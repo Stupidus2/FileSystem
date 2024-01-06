@@ -17,16 +17,17 @@ public class FileSystem {
     public FileSystem(String directory,String fileName, Plugin plugin) {
         try {
             File tempDir = new File(plugin.getDataFolder().getAbsolutePath() + directory);
-            if(!tempDir.exists()) {
+            if (!tempDir.exists()) {
                 tempDir.mkdirs();
             }
-            file = new File(plugin.getDataFolder().getAbsolutePath());
-            if(!file.exists()) {
+
+            file = new File(plugin.getDataFolder(), fileName);
+            if (!file.exists()) {
                 file.createNewFile();
             }
 
             this.yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(java.nio.file.Files.newInputStream(file.toPath()), StandardCharsets.UTF_8));
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
