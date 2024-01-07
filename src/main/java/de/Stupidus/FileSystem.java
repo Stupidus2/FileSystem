@@ -24,7 +24,7 @@ public class FileSystem {
         if (!file.exists()) {
             file.createNewFile();
         }
-        try (InputStream inputStream = new FileInputStream(file)) {
+        try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         }
     }
