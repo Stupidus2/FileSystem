@@ -28,16 +28,15 @@ public class FileSystem {
         }
     }
 
+    public Object read(String location) {
+        return yaml.get(location);
+    }
     public HashMap<String, Object> read() {
         HashMap<String, Object> content = new HashMap<>();
         for (String location : yaml.getKeys(false)) {
             content.put(location, yaml.get(location));
         }
         return content;
-    }
-
-    public Object read(String location) {
-        return yaml.get(location);
     }
 
     public void write(String location, Object content) {
