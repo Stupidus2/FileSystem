@@ -1,12 +1,9 @@
 package de.Stupidus;
 
-import jdk.internal.org.jline.utils.InputStreamReader;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.HashMap;
 
 public class FileSystem {
