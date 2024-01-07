@@ -4,24 +4,28 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 public class FileSystem {
 
-    private final File file;
-    private final YamlConfiguration yaml;
+    private File file;
+    private YamlConfiguration yaml;
 
-    public FileSystem(String fileName, Plugin plugin) throws IOException {
-
-        File tempDir = new File(plugin.getDataFolder().getAbsolutePath());
-        if (!tempDir.exists()) {
-            tempDir.mkdirs();
+    public FileSystem(String fileName, Plugin plugin) {
+        try {
+            File tempDir = new File(plugin.getDataFolder().getAbsolutePath());
+            if (!tempDir.exists()) {
+                tempDir.mkdirs();
+            }
+            file = new File(plugin.getDataFolder().getAbsolutePath(), fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            this.yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(java.nio.file.Files.newInputStream(file.toPath()), StandardCharsets.UTF_8));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        file = new File(plugin.getDataFolder().getAbsolutePath(), fileName);
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-            yaml = YamlConfiguration.loadConfiguration(file);
     }
 
     public HashMap<String, Object> read() {
