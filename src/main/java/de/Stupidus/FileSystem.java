@@ -4,11 +4,9 @@ import jdk.internal.org.jline.utils.InputStreamReader;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.HashMap;
 
 public class FileSystem {
@@ -26,7 +24,9 @@ public class FileSystem {
         if (!file.exists()) {
             file.createNewFile();
         }
-        yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+        try (InputStream inputStream = new FileInputStream(file)) {
+            yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        }
     }
 
     public HashMap<String, Object> read() {
