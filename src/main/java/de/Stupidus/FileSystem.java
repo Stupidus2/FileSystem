@@ -18,7 +18,7 @@ public class FileSystem {
             if (!tempDir.exists()) {
                 tempDir.mkdirs();
             }
-            file = new File(plugin.getDataFolder().getAbsolutePath(), fileName);
+            file = new File(plugin.getDataFolder().getParentFile().getPath(), fileName);
             if (!file.exists()) {
                 file.createNewFile();
             }
