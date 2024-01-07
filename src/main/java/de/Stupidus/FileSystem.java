@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
@@ -12,8 +13,8 @@ import java.util.HashMap;
 
 public class FileSystem {
 
-    private File file;
-    private YamlConfiguration yaml;
+    private final File file;
+    private final YamlConfiguration yaml;
 
     public FileSystem(String fileName, Plugin plugin) throws IOException {
 
@@ -25,7 +26,7 @@ public class FileSystem {
         if (!file.exists()) {
             file.createNewFile();
         }
-        yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(java.nio.file.Files.newInputStream(file.toPath()), StandardCharsets.UTF_8));
+        yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
     }
 
     public HashMap<String, Object> read() {
