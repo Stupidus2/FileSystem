@@ -54,6 +54,7 @@ public class FileSystem {
             PrintWriter writer = new PrintWriter(file);
             writer.print("");
             writer.close();
+            reload();
 
         } catch (Exception e) {
             e.printStackTrace();
