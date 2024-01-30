@@ -59,6 +59,13 @@ public class FileSystem {
             e.printStackTrace();
         }
     }
+    public void reload() {
+        try {
+            this.yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void remove(String location) {
         this.write(location, (Object) null);
