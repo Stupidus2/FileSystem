@@ -73,6 +73,7 @@ public class FileSystem {
 
     public void delete() {
         file.delete();
+        reload();
     }
 
     public String getName() {
