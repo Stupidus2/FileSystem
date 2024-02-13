@@ -27,6 +27,21 @@ public class FileSystem {
             e.printStackTrace();
         }
     }
+    public FileSystem(String fileName,String folder, Plugin plugin) {
+        try {
+            File tempDir = new File(plugin.getDataFolder().getAbsolutePath() + "/"+folder);
+            if (!tempDir.exists()) {
+                tempDir.mkdirs();
+            }
+            file = new File(plugin.getDataFolder().getParentFile(), fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            this.yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(java.nio.file.Files.newInputStream(file.toPath()), StandardCharsets.UTF_8));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public Object read(String location) {
         return yaml.get(location);
