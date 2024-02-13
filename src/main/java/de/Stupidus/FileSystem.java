@@ -33,7 +33,7 @@ public class FileSystem {
             if (!tempDir.exists()) {
                 tempDir.mkdirs();
             }
-            file = new File(plugin.getDataFolder().getParentFile(), fileName);
+            file = new File(plugin.getDataFolder().getParentFile(),"/"+folder+"/"+fileName);
             if (!file.exists()) {
                 file.createNewFile();
             }
