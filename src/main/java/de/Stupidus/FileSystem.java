@@ -108,6 +108,6 @@ public class FileSystem {
         return file.getParent();
     }
     public String test() {
-        return "Das ist ein Test"
+        return "Das ist ein Test";
     }
 }
