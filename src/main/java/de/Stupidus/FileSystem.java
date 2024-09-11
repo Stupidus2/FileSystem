@@ -107,5 +107,7 @@ public class FileSystem {
     public String getParent() {
         return file.getParent();
     }
-
+    public String test() {
+        return "Das ist ein Test"
+    }
 }
