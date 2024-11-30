@@ -28,6 +28,7 @@ public class FileSystem {
         }
     }
     public FileSystem(File file) {
+        try {
             this.file = file;
             this.yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(java.nio.file.Files.newInputStream(this.file.toPath()), StandardCharsets.UTF_8));
         } catch (Exception e) {
