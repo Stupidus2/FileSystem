@@ -27,6 +27,13 @@ public class FileSystem {
             e.printStackTrace();
         }
     }
+    public FileSystem(File file) {
+            this.file = file;
+            this.yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(java.nio.file.Files.newInputStream(this.file.toPath()), StandardCharsets.UTF_8));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public FileSystem(String fileName,String folder, Plugin plugin) {
         try {
             File tempDir = new File(plugin.getDataFolder().getAbsolutePath() + "/"+folder);
